@@ -14,15 +14,11 @@ function createEmpty(): IObject {
 }
 
 export function mapStateToProps(state: IAppState): IFormPageProps {
-    // TODO: move it to reducer {
-    const employees = state.formPage.employees.length ? state.formPage.employees : state.data.employees;
-    const departments = state.formPage.departments.length ? state.formPage.departments : state.data.departments;
-    const locations = state.formPage.locations.length ? state.formPage.locations : state.data.locations;
-    // }
     return {
-        departments: [createEmpty(), ...departments],
-        employees: [createEmpty(), ...employees],
-        locations: [createEmpty(), ...locations],
+        departments: [createEmpty(), ...state.page.departments],
+        employees: [createEmpty(), ...state.page.employees],
+        locations: [createEmpty(), ...state.page.locations],
+        transfer: state.page.transfer,
     };
 }
 

@@ -1,7 +1,8 @@
+import { EMPTY_GUID } from './constants';
 import { IDepartment, IEmployee, ILocation, ITransfer } from './types';
 
 export const LOCATIONS = Array(10).fill(1).map((_, i) => createLocation(i));
-export const DEPARTMENTS = Array(20).fill(1).map((_, i) => createDepartment(i));
+export const DEPARTMENTS = Array(5).fill(1).map((_, i) => createDepartment(i));
 export const EMPLOYEES = Array(100).fill(1).map((_, i) => createEmployee(i));
 
 export function getSomeTransfer(): ITransfer {
@@ -62,4 +63,16 @@ function random(min: number, max: number): number {
 
 export function getDepartmentById(departmentId: string): IDepartment | undefined {
     return DEPARTMENTS.find(x => x.id === departmentId);
+}
+
+export function getEmployeeById(employeeId: string): IEmployee | undefined {
+    return EMPLOYEES.find(x => x.id === employeeId);
+}
+
+export function getLocationById(locationId: string): ILocation | undefined {
+    return LOCATIONS.find(x => x.id === locationId);
+}
+
+export function isEmptyGuid(id: string): boolean {
+    return EMPTY_GUID === id;
 }

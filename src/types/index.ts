@@ -1,5 +1,5 @@
 export interface IAppState {
-    formPage: IFormPageState;
+    page: IFormPageState;
     data: IData;    
 }
 
