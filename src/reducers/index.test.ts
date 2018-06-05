@@ -1,6 +1,6 @@
 import { formPageReducer } from '.';
 import { selectDepartment } from '../actions';
-import { IDepartment, IEmployee, IFormPageState, ILocation } from '../types';
+import { IDepartment, IEmployee, IFormPageState, ILocation, IAppState } from '../types';
 
 // #region Mocked data
 const DUBNA: ILocation = {
@@ -101,30 +101,37 @@ const EMPLOYEES: IEmployee[] = [
 
 describe('reducers should reduce ♥', () => {
     it('filter locations and employees on department selection', () => {
-        const state: IFormPageState = {
-            departments: DEPARTMENTS,
-            employees: EMPLOYEES,
-            locations: LOCATIONS,
-            transfer: {
-                department: undefined,
-                employee: undefined,
-                location: undefined
-            }
+        const state: IAppState = {
+            data: {} as any,
+            page: {
+                
+                departments: DEPARTMENTS,
+                employees: EMPLOYEES,
+                locations: LOCATIONS,
+                transfer: {
+                    department: undefined,
+                    employee: undefined,
+                    location: undefined
+                }
+            },
         };
 
-        const expectedState: IFormPageState = {
-            departments: DEPARTMENTS,
-            employees: EMPLOYEES.filter(x => x.department!.id === LUXSTAFF_ID),
-            locations: LUXSTAFF.locations!,
-            transfer: {
-                department: LUXSTAFF,
-                employee: undefined,
-                location: undefined
-            }
+        const expectedState: IAppState = {
+            data: {} as any,
+            page: {
+                departments: DEPARTMENTS,
+                employees: EMPLOYEES.filter(x => x.department!.id === LUXSTAFF_ID),
+                locations: LUXSTAFF.locations!,
+                transfer: {
+                    department: LUXSTAFF,
+                    employee: undefined,
+                    location: undefined
+                }
+            }            
         };
 
         const newState = formPageReducer(state, selectDepartment(LUXSTAFF_ID));
 
-        expect(newState.employees).toEqual(expectedState.employees);
+        expect(newState.data.employees).toEqual(expectedState.data.employees);
     });
 })
